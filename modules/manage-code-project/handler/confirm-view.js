@@ -11,7 +11,13 @@
  * @returns {Null} responds with HTML page
  */
 function confirmView (request, reply) {
-    reply.view('modules/manage-code-project/view/confirm');
+    const action = request
+        .yar
+        .get('action');
+
+    const displayInfo = {action: action};
+
+    reply.view('modules/manage-code-project/view/confirm', displayInfo);
 }
 
 module.exports = confirmView;
