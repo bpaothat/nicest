@@ -1,0 +1,18 @@
+extends ../../shared-template/default.pug
+
+block title
+    title Assessment Tracker URL
+
+block script
+    script(src='//code.jquery.com/jquery-3.0.0.min.js')
+    script(src='//oss.maxcdn.com/semantic-ui/2.2.2/components/transition.min.js')
+
+
+block body
+    .ui.container
+        form.ui.attached.large.form(action = prefix + '/recipe/manage-code-project/confirm', method='POST')
+            .ui.attached.stacked.segment
+                .field
+                    label CAssess POST endpoint
+                    input(type='text', name='cassessUrl', placeholder='Endpoint URL')
+                input.ui.large.teal.submit.button(type='submit', value='next')
