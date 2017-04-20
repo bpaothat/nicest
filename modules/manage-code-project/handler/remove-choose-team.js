@@ -13,6 +13,11 @@ const Projects = require('../../code-project/model/project');
   * @returns {Null} responds with HTML page
   */
 function chooseUserTeamRemove (request, reply) {
+    /**
+     * Presents a view for a user to choose a team
+     * @param {Projects} projects - projects that are associated with the course
+     * @returns {Null} responds with HTML page that allows user to choose a team that student will be added
+     */
     function presentView (projects) {
         const viewInfo = {
             projects: projects
@@ -21,6 +26,10 @@ function chooseUserTeamRemove (request, reply) {
         reply.view('modules/manage-code-project/view/remove-choose-team', viewInfo);
     }
 
+    /**
+     * Gets all projects associated with choosen course in Nicest
+     * @returns {Null} calls getCourses function
+     */
     function getProjects () {
         Projects
             .find(request.query)
