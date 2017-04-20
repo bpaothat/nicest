@@ -16,7 +16,10 @@ const Users = require('../../user/model/user');
   */
 function chooseUserRemove (request, reply) {
     /**
-     *
+     * Presents a view for a user to choose an user
+     * @param {Team} team - team that user will be added to
+     * @param {Users} users - all users
+     * @returns {Null} responds with HTML page that allows user to choose course that student will be added
      */
     function presentView (team, users) {
         const usersInTeam = [];
@@ -33,8 +36,11 @@ function chooseUserRemove (request, reply) {
 
         reply.view('modules/manage-code-project/view/remove-choose-user', viewInfo);
     }
+
     /**
-     *
+     * Gets the users in the team
+     * @param {Object} -team object
+     * @returns {Null} calls getTeam function passing the team and all users
      */
     function getUsers (team) {
         Users
@@ -44,6 +50,11 @@ function chooseUserRemove (request, reply) {
             });
     }
 
+    /**
+     * Gets the team for project
+     * @param {Object} -teamId argument to query Team collection to get team associated with project
+     * @returns {Null} calls getTeam function
+     */
     function getTeam (teamId) {
         Teams
             .find(teamId)
@@ -52,6 +63,10 @@ function chooseUserRemove (request, reply) {
             });
     }
 
+    /**
+     * Gets the project that was choosen
+     * @returns {Null} calls getTeam function
+     */
     function getProject () {
         Projects
             .find(request.query)
