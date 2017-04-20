@@ -25,6 +25,7 @@ const handlerTransferUserAction = require('./handler/transfer-user');
 const handlerGitHubLoginView = require('./handler/github-view');
 const handlerTaigaLoginView = require('./handler/taiga-view');
 const handlerTaigaLoginAction = require('./handler/taiga-action');
+const handlerAssessmentTracker = require('./handler/assessment-tracker-url');
 const handlerConfirmView = require('./handler/confirm-view');
 const handlerConfirmAction = require('./handler/process');
 
@@ -134,6 +135,11 @@ module.exports = [
         handler: handlerTaigaLoginAction,
         method: 'POST',
         path: '/recipe/manage-code-project/taiga-login'
+    },
+    {
+        handler: handlerAssessmentTracker,
+        method: 'GET',
+        path: '/recipe/manage-code-project/assessment-tracker-url'
     },
     {
         handler: handlerConfirmView,
