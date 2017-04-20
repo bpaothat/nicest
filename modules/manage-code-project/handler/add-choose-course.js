@@ -14,12 +14,18 @@ const Courses = require('../../course/model/course');
   * @returns {Null} responds with HTML page
   */
 function chooseUserCourseAdd (request, reply) {
+    /**
+     * Presents a view for a user to choose a courses
+     * @param {Projects} projects - All projects in Nicest
+     * @param {Courses} courses - All courses in Nicest
+     * @returns {Null} responds with HTML page that allows user to choose a course that student will be added
+     */
     function presentView (projects, courses) {
         const courseWithProjects = [];
 
         projects.forEach((project) => {
             let index = 0;
-            
+
             while (index < courses.length) {
                 const projectCourseID = JSON.stringify(project.course);
 
@@ -39,6 +45,11 @@ function chooseUserCourseAdd (request, reply) {
         reply.view('modules/manage-code-project/view/add-choose-course', viewInfo);
     }
 
+    /**
+     * Gets all courses in Nicest and passes projects into presentView function
+     * @param {Projects} projects - all projects in Nicest
+     * @returns {Null} calls presentView function
+     */
     function getCourses (projects) {
         Courses
             .find({})
@@ -47,6 +58,10 @@ function chooseUserCourseAdd (request, reply) {
             });
     }
 
+     /**
+      * Gets all projects in Nicest and calls getCourses
+      * @returns {Null} calls getCourses function
+      */
     function getProjects () {
         Projects
             .find({})
