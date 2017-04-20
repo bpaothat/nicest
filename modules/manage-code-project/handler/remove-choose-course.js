@@ -16,10 +16,10 @@ const Courses = require('../../course/model/course');
 function chooseUserCourseRemove (request, reply) {
 
     /**
-     * Present a view where user can select
-     * @param {Projects} projects - metadata for all projects
-     * @param {Courses} courses - metadata for courses
-     * @returns {Null} responds with HTML page
+     * Present a view where user can select course to remove user from
+     * @param {Projects} projects - All projects in Nicest
+     * @param {Courses} courses - All courses in Nicest
+     * @returns {Null} responds with HTML page that allows user to choose a course 
      */
     function presentView (projects, courses) {
         const courseWithProjects = [];
@@ -29,8 +29,8 @@ function chooseUserCourseRemove (request, reply) {
             while (index < courses.length) {
                 const projectCourseID = JSON.stringify(project.course);
 
-                const courseID = JSON.stringify(courses[index]._id;
-                    
+                const courseID = JSON.stringify(courses[index]._id);
+
                 if (projectCourseID === courseID) {
                     if (courseWithProjects.indexOf(courses[index]) === -1) {
                         courseWithProjects.push(courses[index]);
@@ -45,6 +45,11 @@ function chooseUserCourseRemove (request, reply) {
         reply.view('modules/manage-code-project/view/remove-choose-course', viewInfo);
     }
 
+    /**
+     * Gets all courses in Nicest and passes projects into presentView function
+     * @param {Projects} projects - all projects in Nicest
+     * @returns {Null} calls presentView function
+     */
     function getCourses (projects) {
         Courses
             .find({})
@@ -53,6 +58,10 @@ function chooseUserCourseRemove (request, reply) {
             });
     }
 
+    /**
+     * Gets all projects in Nicest and calls getCourses
+     * @returns {Null} calls getCourses function
+     */
     function getProjects () {
         Projects
             .find({})
