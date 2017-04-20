@@ -17,8 +17,8 @@ const Users = require('../../user/model/user');
 function chooseUserAdd (request, reply) {
     /**
      * Presents a view for a user to choose an user
-     * @param {Projects} projects - All projects in Nicest
-     * @param {Courses} courses - All courses in Nicest
+     * @param {Team} team - team that user will be added to
+     * @param {Users} users - all users
      * @returns {Null} responds with HTML page that allows user to choose course that student will be added
      */
     function presentView (team, users) {
@@ -38,7 +38,7 @@ function chooseUserAdd (request, reply) {
     }
 
     /**
-     * Gets the users in the team
+     * Gets the all users
      * @param {Object} -team object
      * @returns {Null} calls getTeam function passing the team and all users
      */
